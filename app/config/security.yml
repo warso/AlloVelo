@@ -4,6 +4,9 @@ security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
+#        in_database:
+#            entity:
+#                
         in_memory:
             memory: 
                 users:
