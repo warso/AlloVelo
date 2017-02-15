@@ -9,12 +9,10 @@
 <body>
 
     <h2> Menu </h2>
-    <a href="{{ path('client_index') }}">Liste des clients</a>
-    <a href="{{ path('livreur_index') }}">Liste des livreurs</a>
-    <a href="{{ path('commande_index') }}">Liste des commandes</a>
 
-    {#    
+    {#  
     {% if (app.session.get("client")) %}
+    Bienvenue {{app.session.get("client").login}}
     <a href="{{path('inscription')}}">Inscription</a>
         <a href="{{path('connexion')}}">Connexion</a>
         <a href="{{path('deconnexion')}}">Deconnexion</a>
@@ -22,6 +20,7 @@
     
     
     {% if (app.session.get("livreur")) %}
+    Bienvenue {{app.session.get("livreur").login}}
         <a href="{{path('connexion')}}">Connexion</a>
         <a href="{{path('deconnexion')}}">Deconnexion</a>
     {% endif %}

@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Livreur controller.
  *
- * @Route("livreur")
+ * @Route("/admin/livreur")
  */
 class LivreurController extends Controller
 {

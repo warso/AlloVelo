@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Commande controller.
  *
- * @Route("commande")
+ * @Route("/admin/commande")
  */
 class CommandeController extends Controller
 {

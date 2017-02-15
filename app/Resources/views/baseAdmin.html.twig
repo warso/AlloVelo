@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+
+    <h2> Menu </h2>
+    <a href="{{ path('client_index') }}">Liste des clients</a>
+    <a href="{{ path('livreur_index') }}">Liste des livreurs</a>
+    <a href="{{ path('commande_index') }}">Liste des commandes</a>
+
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>
