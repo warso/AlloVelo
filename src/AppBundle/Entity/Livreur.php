@@ -263,4 +263,7 @@ class Livreur
     {
         return $this->mdp;
     }
+        public function __toString() {
+        return $this->login;
+    }
 }

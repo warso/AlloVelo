@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\Embedded;
 
 /**
  * Commande
@@ -288,6 +287,10 @@ class Commande {
      */
     public function getClient() {
         return $this->client;
+    }
+
+    public function __toString() {
+        return "Commande: " . $this->id;
     }
 
 }

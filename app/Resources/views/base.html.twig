@@ -7,16 +7,26 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
-    
+
     <h2> Menu </h2>
     <a href="{{ path('client_index') }}">Liste des clients</a>
     <a href="{{ path('livreur_index') }}">Liste des livreurs</a>
     <a href="{{ path('commande_index') }}">Liste des commandes</a>
+
+    {#    
+    {% if (app.session.get("client")) %}
+    <a href="{{path('inscription')}}">Inscription</a>
+        <a href="{{path('connexion')}}">Connexion</a>
+        <a href="{{path('deconnexion')}}">Deconnexion</a>
+    {% endif %}
     
-{#    <a href="{{path('inscription')}}">Inscription</a>
-    <a href="{{path('connexion')}}">Connexion</a>
-    <a href="{{path('deconnexion')}}">Deconnexion</a>#}
     
+    {% if (app.session.get("livreur")) %}
+        <a href="{{path('connexion')}}">Connexion</a>
+        <a href="{{path('deconnexion')}}">Deconnexion</a>
+    {% endif %}
+    #}
+
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
 </body>
