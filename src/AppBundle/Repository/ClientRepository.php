@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class ClientRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function recupClient($login, $motDePasse)
+    {
+        $res = $this->_em->getRepository('AppBundle:Client');
+
+        $user = $res->findOneBy(array("login" => $login, "mdp" => $motDePasse));
+
+        return $user;
+    }
+
 }
