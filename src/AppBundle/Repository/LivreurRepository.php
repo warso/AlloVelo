@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class LivreurRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function recupLivreur($login, $motDePasse)
+    {
+        $res = $this->_em->getRepository('AppBundle:Livreur');
+
+        $user = $res->findOneBy(array("login" => $login, "mdp" => $motDePasse));
+
+        return $user;
+    }
+
 }

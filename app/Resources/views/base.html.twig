@@ -11,9 +11,10 @@
     <h2> Menu </h2>
 
     <div id="connexionClient">
-        <fieldset>
-            <legend>Espace Client</legend>
-            {% if not app.session.get("livreur") %}
+        {% if not app.session.get("livreur") %}
+            <fieldset>
+                <legend>Espace Client</legend>
+
                 {% if (app.session.get("client")) %}
                     Bienvenue {{app.session.get("client").login}}
                     <a href="{{path('deconnexionClient')}}">Deconnexion</a>
@@ -21,23 +22,26 @@
                     <a href="{{path('inscriptionClient')}}">Inscription</a>
                     <a href="{{path('connexionClient')}}">Connexion</a>
                 {% endif %}
-            {% endif %}
-        </fieldset>
+
+            </fieldset>
+        {% endif %}
     </div>
 
-    {#<div id="connexionLivreur">
-    <fieldset>
-            <legend>Espace Livreur</legend>
+    <div id="connexionLivreur">
         {% if not (app.session.get("client")) %}
-            {% if (app.session.get("livreur")) %}
-                Bienvenue {{app.session.get("livreur").login}}
-                <a href="{{path('deconnexion')}}">Deconnexion</a>
-            {% else %}
-                <a href="{{path('connexion')}}">Connexion</a>
-            {% endif %}
+            <fieldset>
+                <legend>Espace Livreur</legend>
+
+                {% if (app.session.get("livreur")) %}
+                    Bienvenue {{app.session.get("livreur").login}}
+                    <a href="{{path('deconnexion')}}">Deconnexion</a>
+                {% else %}
+                    <a href="{{path('connection')}}">Connexion</a>
+                {% endif %}
+
+            </fieldset>
         {% endif %}
-    </fieldset>
-    </div>#}
+    </div>
 
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
