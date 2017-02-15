@@ -80,7 +80,7 @@ class InscriptionClientController extends Controller
     /**
      * @Route("/deconnexionClient", name="deconnexionClient")
      */
-    public function deconnexionClientAction()
+    public function deconnexionClientAction(\Symfony\Component\HttpFoundation\Request $req)
     {
         // pas de formulaire
         // on vide juste les sessions
