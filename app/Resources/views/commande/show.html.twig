@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commande</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commande.id }}</td>
+            </tr>
+            <tr>
+                <th>Datecommande</th>
+                <td>{% if commande.dateCommande %}{{ commande.dateCommande|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datereception</th>
+                <td>{% if commande.dateReception %}{{ commande.dateReception|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datelivraison</th>
+                <td>{% if commande.dateLivraison %}{{ commande.dateLivraison|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fraislivraison</th>
+                <td>{{ commande.fraisLivraison }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ commande.etat }}</td>
+            </tr>
+            <tr>
+                <th>Adressereception.rue1</th>
+                <td>{{ commande.adresseReception.rue1 }}</td>
+            </tr>
+            <tr>
+                <th>Adressereception.rue2</th>
+                <td>{{ commande.adresseReception.rue2 }}</td>
+            </tr>
+            <tr>
+                <th>Adressereception.codepostal</th>
+                <td>{{ commande.adresseReception.codePostal }}</td>
+            </tr>
+            <tr>
+                <th>Adressereception.ville</th>
+                <td>{{ commande.adresseReception.ville }}</td>
+            </tr>
+            <tr>
+                <th>Adresselivraison.rue1</th>
+                <td>{{ commande.adresseLivraison.rue1 }}</td>
+            </tr>
+            <tr>
+                <th>Adresselivraison.rue2</th>
+                <td>{{ commande.adresseLivraison.rue2 }}</td>
+            </tr>
+            <tr>
+                <th>Adresselivraison.codepostal</th>
+                <td>{{ commande.adresseLivraison.codePostal }}</td>
+            </tr>
+            <tr>
+                <th>Adresselivraison.ville</th>
+                <td>{{ commande.adresseLivraison.ville }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('commande_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('commande_edit', { 'id': commande.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -19,16 +19,16 @@ use Doctrine\ORM\Mapping\Column;
  */
 class Adresse {
 
-    /** @Column(type = "string") */
+    /** @Column(name="rue1", type="string", length=255, nullable=true) */
     private $rue1;
 
-    /** @Column(type = "string") */
+    /** @Column(name="rue2", type="string", length=255, nullable=true) */
     private $rue2;
 
-    /** @Column(type = "string") */
+    /** @Column(name="codePostal", type="string", length=255, nullable=true) */
     private $codePostal;
 
-    /** @Column(type = "string") */
+    /** @Column(name="ville", type="string", length=255, nullable=true) */
     private $ville;
 
 }

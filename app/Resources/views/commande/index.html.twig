@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commandes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datecommande</th>
+                <th>Datereception</th>
+                <th>Datelivraison</th>
+                <th>Fraislivraison</th>
+                <th>Etat</th>
+                <th>Adressereception.rue1</th>
+                <th>Adressereception.rue2</th>
+                <th>Adressereception.codepostal</th>
+                <th>Adressereception.ville</th>
+                <th>Adresselivraison.rue1</th>
+                <th>Adresselivraison.rue2</th>
+                <th>Adresselivraison.codepostal</th>
+                <th>Adresselivraison.ville</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td><a href="{{ path('commande_show', { 'id': commande.id }) }}">{{ commande.id }}</a></td>
+                <td>{% if commande.dateCommande %}{{ commande.dateCommande|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if commande.dateReception %}{{ commande.dateReception|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if commande.dateLivraison %}{{ commande.dateLivraison|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ commande.fraisLivraison }}</td>
+                <td>{{ commande.etat }}</td>
+                <td>{{ commande.adresseReception.rue1 }}</td>
+                <td>{{ commande.adresseReception.rue2 }}</td>
+                <td>{{ commande.adresseReception.codePostal }}</td>
+                <td>{{ commande.adresseReception.ville }}</td>
+                <td>{{ commande.adresseLivraison.rue1 }}</td>
+                <td>{{ commande.adresseLivraison.rue2 }}</td>
+                <td>{{ commande.adresseLivraison.codePostal }}</td>
+                <td>{{ commande.adresseLivraison.ville }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('commande_show', { 'id': commande.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('commande_edit', { 'id': commande.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('commande_new') }}">Create a new commande</a>
+        </li>
+    </ul>
+{% endblock %}

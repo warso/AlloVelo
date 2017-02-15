@@ -21,6 +21,19 @@ class Commande {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\JoinColumn(name="livreur_id")
+     * @ORM\ManyToOne(targetEntity="Livreur", inversedBy="commandes")
+     */
+    private $livreur;
+    
+    /**
+     * @ORM\JoinColumn(name="client_id")
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="commandes")
+     */
+    
+    private $client;
 
     /**
      * @var \DateTime
@@ -229,5 +242,53 @@ class Commande {
     public function getAdresseLivraison()
     {
         return $this->adresseLivraison;
+    }
+
+    /**
+     * Set livreur
+     *
+     * @param \AppBundle\Entity\Livreur $livreur
+     *
+     * @return Commande
+     */
+    public function setLivreur(\AppBundle\Entity\Livreur $livreur = null)
+    {
+        $this->livreur = $livreur;
+
+        return $this;
+    }
+
+    /**
+     * Get livreur
+     *
+     * @return \AppBundle\Entity\Livreur
+     */
+    public function getLivreur()
+    {
+        return $this->livreur;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \AppBundle\Entity\Client $client
+     *
+     * @return Commande
+     */
+    public function setClient(\AppBundle\Entity\Client $client = null)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \AppBundle\Entity\Client
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 }
