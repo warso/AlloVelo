@@ -21,18 +21,17 @@ class Commande {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @ORM\JoinColumn(name="livreur_id")
      * @ORM\ManyToOne(targetEntity="Livreur", inversedBy="commandes")
      */
     private $livreur;
-    
+
     /**
      * @ORM\JoinColumn(name="client_id")
      * @ORM\ManyToOne(targetEntity="Client", inversedBy="commandes")
      */
-    
     private $client;
 
     /**
@@ -70,10 +69,18 @@ class Commande {
      */
     private $etat;
 
-    /** @Embedded(class = "Adresse",  columnPrefix = "reception_") */
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="adresseReception", type="text", nullable=true )       
+     */
     private $adresseReception;
-    
-    /** @Embedded(class = "Adresse",  columnPrefix = "livraison_") */
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="adresseLivraison", type="text", nullable=true )       
+     */
     private $adresseLivraison;
 
     /**
@@ -195,7 +202,6 @@ class Commande {
         return $this->etat;
     }
 
-
     /**
      * Set adresseReception
      *
@@ -203,8 +209,7 @@ class Commande {
      *
      * @return Commande
      */
-    public function setAdresseReception(\AppBundle\Entity\Adresse $adresseReception)
-    {
+    public function setAdresseReception(\AppBundle\Entity\Adresse $adresseReception) {
         $this->adresseReception = $adresseReception;
 
         return $this;
@@ -215,8 +220,7 @@ class Commande {
      *
      * @return \AppBundle\Entity\Adresse
      */
-    public function getAdresseReception()
-    {
+    public function getAdresseReception() {
         return $this->adresseReception;
     }
 
@@ -227,8 +231,7 @@ class Commande {
      *
      * @return Commande
      */
-    public function setAdresseLivraison(\AppBundle\Entity\Adresse $adresseLivraison)
-    {
+    public function setAdresseLivraison(\AppBundle\Entity\Adresse $adresseLivraison) {
         $this->adresseLivraison = $adresseLivraison;
 
         return $this;
@@ -239,8 +242,7 @@ class Commande {
      *
      * @return \AppBundle\Entity\Adresse
      */
-    public function getAdresseLivraison()
-    {
+    public function getAdresseLivraison() {
         return $this->adresseLivraison;
     }
 
@@ -251,8 +253,7 @@ class Commande {
      *
      * @return Commande
      */
-    public function setLivreur(\AppBundle\Entity\Livreur $livreur = null)
-    {
+    public function setLivreur(\AppBundle\Entity\Livreur $livreur = null) {
         $this->livreur = $livreur;
 
         return $this;
@@ -263,8 +264,7 @@ class Commande {
      *
      * @return \AppBundle\Entity\Livreur
      */
-    public function getLivreur()
-    {
+    public function getLivreur() {
         return $this->livreur;
     }
 
@@ -275,8 +275,7 @@ class Commande {
      *
      * @return Commande
      */
-    public function setClient(\AppBundle\Entity\Client $client = null)
-    {
+    public function setClient(\AppBundle\Entity\Client $client = null) {
         $this->client = $client;
 
         return $this;
@@ -287,8 +286,8 @@ class Commande {
      *
      * @return \AppBundle\Entity\Client
      */
-    public function getClient()
-    {
+    public function getClient() {
         return $this->client;
     }
+
 }

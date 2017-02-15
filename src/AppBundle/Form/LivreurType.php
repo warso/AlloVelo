@@ -13,7 +13,7 @@ class LivreurType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')->add('prenom')->add('localisation')->add('telephone')        ;
+        $builder->add('nom')->add('prenom')->add('localisation')->add('telephone')->add('login')->add('mdp')        ;
     }
     
     /**

@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
  */
-class Client
-{
+class Client {
+
     /**
      * @var int
      *
@@ -20,12 +20,12 @@ class Client
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Commande", mappedBy="client")
      */
-     private $commandes;
-     
+    private $commandes;
+
     /**
      * @var string
      *
@@ -54,14 +54,26 @@ class Client
      */
     private $mail;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=255, nullable=true)
+     */
+    private $login;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mdp", type="string", length=255, nullable=true)
+     */
+    private $mdp;
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -72,8 +84,7 @@ class Client
      *
      * @return Client
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -84,8 +95,7 @@ class Client
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -96,8 +106,7 @@ class Client
      *
      * @return Client
      */
-    public function setPrenom($prenom)
-    {
+    public function setPrenom($prenom) {
         $this->prenom = $prenom;
 
         return $this;
@@ -108,8 +117,7 @@ class Client
      *
      * @return string
      */
-    public function getPrenom()
-    {
+    public function getPrenom() {
         return $this->prenom;
     }
 
@@ -120,8 +128,7 @@ class Client
      *
      * @return Client
      */
-    public function setTelephone($telephone)
-    {
+    public function setTelephone($telephone) {
         $this->telephone = $telephone;
 
         return $this;
@@ -132,8 +139,7 @@ class Client
      *
      * @return string
      */
-    public function getTelephone()
-    {
+    public function getTelephone() {
         return $this->telephone;
     }
 
@@ -144,8 +150,7 @@ class Client
      *
      * @return Client
      */
-    public function setMail($mail)
-    {
+    public function setMail($mail) {
         $this->mail = $mail;
 
         return $this;
@@ -156,15 +161,14 @@ class Client
      *
      * @return string
      */
-    public function getMail()
-    {
+    public function getMail() {
         return $this->mail;
     }
+
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->commandes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -175,8 +179,7 @@ class Client
      *
      * @return Client
      */
-    public function addCommande(\AppBundle\Entity\Commande $commande)
-    {
+    public function addCommande(\AppBundle\Entity\Commande $commande) {
         $this->commandes[] = $commande;
 
         return $this;
@@ -187,8 +190,7 @@ class Client
      *
      * @param \AppBundle\Entity\Commande $commande
      */
-    public function removeCommande(\AppBundle\Entity\Commande $commande)
-    {
+    public function removeCommande(\AppBundle\Entity\Commande $commande) {
         $this->commandes->removeElement($commande);
     }
 
@@ -197,8 +199,56 @@ class Client
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCommandes()
-    {
+    public function getCommandes() {
         return $this->commandes;
+    }
+
+
+    /**
+     * Set login
+     *
+     * @param string $login
+     *
+     * @return Client
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
+     * Set mdp
+     *
+     * @param string $mdp
+     *
+     * @return Client
+     */
+    public function setMdp($mdp)
+    {
+        $this->mdp = $mdp;
+
+        return $this;
+    }
+
+    /**
+     * Get mdp
+     *
+     * @return string
+     */
+    public function getMdp()
+    {
+        return $this->mdp;
     }
 }

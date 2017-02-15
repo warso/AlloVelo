@@ -54,7 +54,20 @@ class Livreur
      * @ORM\Column(name="telephone", type="string", length=255, nullable=true)
      */
     private $telephone;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=255, nullable=true)
+     */
+    private $login;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mdp", type="string", length=255, nullable=true)
+     */
+    private $mdp;
 
     /**
      * Get id
@@ -201,5 +214,53 @@ class Livreur
     public function getCommandes()
     {
         return $this->commandes;
+    }
+
+    /**
+     * Set login
+     *
+     * @param string $login
+     *
+     * @return Livreur
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
+     * Set mdp
+     *
+     * @param string $mdp
+     *
+     * @return Livreur
+     */
+    public function setMdp($mdp)
+    {
+        $this->mdp = $mdp;
+
+        return $this;
+    }
+
+    /**
+     * Get mdp
+     *
+     * @return string
+     */
+    public function getMdp()
+    {
+        return $this->mdp;
     }
 }
