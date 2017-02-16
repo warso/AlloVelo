@@ -38,7 +38,7 @@ security:
             
             
     access_control:
-        - {path: admin/client*, roles: ROLE_ADMIN}
-        - {path: admin/livreur*, roles: ROLE_ADMIN}
-        - {path: admin/commande*, roles: ROLE_ADMIN}
+        - {path: admin*, roles: ROLE_ADMIN}
+#        - {path: admin/livreur*, roles: ROLE_ADMIN}
+#        - {path: admin/commande*, roles: ROLE_ADMIN}
             

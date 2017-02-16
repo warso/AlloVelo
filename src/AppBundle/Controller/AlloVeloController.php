@@ -16,5 +16,12 @@ class AlloVeloController extends Controller
             // ...
         ));
     }
+    
+        
+    public function calculTarif() {
+        
+        $container->getParameter('tarif');
+        
+    }
 
 }
