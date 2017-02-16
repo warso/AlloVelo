@@ -3,13 +3,25 @@
 {% block title %}AppBundle:CoteClientControleur:creerCommande{% endblock %}
 
 {% block body %}
-    <h1> Liste des Commandes du Client </h1>
+    <h1> Liste de mes commandes </h1>
 
+    <table>
+        <tr>
+            <th>Date de commande</th>
+            <th>Adresse de Réception</th>
+            <th>Adresse de Livraison</th>
+            <th>Frais de Livraison</th>
+            <th>Etat</th>
+        </tr>
     {%for cmdAct in commandesCli %}
-        Client : {{commandesCli.client}}
-        Date de commande : {{commandesCli.dateCommande}}
-        Adresse de Livraison : {{commandesCli.adresseLivraison}}
-        Etat de la commande : {{commandesCli.etat}}
+        <tr>
+            <td>{{cmdAct.dateCommande | date}}</td>
+            <td>{{cmdAct.adresseReception}}</td>
+            <td>{{cmdAct.adresseLivraison}}</td>
+            <td>{{cmdAct.fraisLivraison}}</td>
+            <td>{{cmdAct.etat}}</td>
+        </tr>
     {% endfor %}
+    </table>
 
 {% endblock %}

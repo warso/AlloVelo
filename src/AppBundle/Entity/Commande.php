@@ -43,7 +43,7 @@ class Commande {
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateReception", type="datetime")
+     * @ORM\Column(name="dateReception", type="datetime", nullable=true)
      */
     private $dateReception;
 
@@ -201,49 +201,7 @@ class Commande {
         return $this->etat;
     }
 
-    /**
-     * Set adresseReception
-     *
-     * @param \AppBundle\Entity\Adresse $adresseReception
-     *
-     * @return Commande
-     */
-    public function setAdresseReception(\AppBundle\Entity\Adresse $adresseReception) {
-        $this->adresseReception = $adresseReception;
-
-        return $this;
-    }
-
-    /**
-     * Get adresseReception
-     *
-     * @return \AppBundle\Entity\Adresse
-     */
-    public function getAdresseReception() {
-        return $this->adresseReception;
-    }
-
-    /**
-     * Set adresseLivraison
-     *
-     * @param \AppBundle\Entity\Adresse $adresseLivraison
-     *
-     * @return Commande
-     */
-    public function setAdresseLivraison(\AppBundle\Entity\Adresse $adresseLivraison) {
-        $this->adresseLivraison = $adresseLivraison;
-
-        return $this;
-    }
-
-    /**
-     * Get adresseLivraison
-     *
-     * @return \AppBundle\Entity\Adresse
-     */
-    public function getAdresseLivraison() {
-        return $this->adresseLivraison;
-    }
+    
 
     /**
      * Set livreur
@@ -293,4 +251,52 @@ class Commande {
         return "Commande: " . $this->id;
     }
 
+
+    /**
+     * Set adresseReception
+     *
+     * @param string $adresseReception
+     *
+     * @return Commande
+     */
+    public function setAdresseReception($adresseReception)
+    {
+        $this->adresseReception = $adresseReception;
+
+        return $this;
+    }
+
+    /**
+     * Get adresseReception
+     *
+     * @return string
+     */
+    public function getAdresseReception()
+    {
+        return $this->adresseReception;
+    }
+
+    /**
+     * Set adresseLivraison
+     *
+     * @param string $adresseLivraison
+     *
+     * @return Commande
+     */
+    public function setAdresseLivraison($adresseLivraison)
+    {
+        $this->adresseLivraison = $adresseLivraison;
+
+        return $this;
+    }
+
+    /**
+     * Get adresseLivraison
+     *
+     * @return string
+     */
+    public function getAdresseLivraison()
+    {
+        return $this->adresseLivraison;
+    }
 }

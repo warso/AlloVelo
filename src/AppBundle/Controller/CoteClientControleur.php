@@ -32,14 +32,17 @@ class CoteClientControleur extends Controller
             $util = $this->getUser();
             $fraisLivraison = 5.6;
             $this->get("commande_service")->creerCommande($dto->getAdresseReception(), $dto->getAdresseLivraison(), $fraisLivraison, $util);
+        
+             return  $this->redirectToRoute('listerCommande');
         }
         // afficher le form !!!
         return $this->render('AppBundle:CoteClientControleur:creer_commande.html.twig', array(
-                        // ...
+                        "monForm"=>$form->createView()
         ));
     }
 
     /**
+     * Lister les commandes du client en cours
      * @Route("/listerCommande", name="listerCommande")
      */
     public function listerCommandeAction()
@@ -51,8 +54,9 @@ class CoteClientControleur extends Controller
 
         $qb->select("c")
                 ->from("AppBundle:Commande", "c")
-                ->join("c.client", "cc")
-                ->orderBy("c.dateCommande");
+                ->where("c.client = :client")
+                ->orderBy("c.dateCommande")
+                ->setParameter("client",$this->getUser());
 
         $query = $qb->getQuery();
 
