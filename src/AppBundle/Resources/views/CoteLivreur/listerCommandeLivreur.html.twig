@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:CoteLivreurControleur:creerCommande{% endblock %}
+
+{% block body %}
+    <h1> Liste des Commandes du Livreur </h1>
+
+    {%for cmdAct in commandesLiv %}
+        Client : {{commandesLiv.livreur}}
+        Date de commande : {{commandesLiv.dateCommande}}
+        Adresse de Livraison : {{commandesLiv.adresseLivraison}}
+        Etat de la commande : {{commandesLiv.etat}}
+    {% endfor %}
+
+{% endblock %}
