@@ -4,19 +4,21 @@ security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-#        in_database:
-#            entity:
+        in_database:
+            entity: 
+                class: AppBundle:Utilisateur
+                property: login
 #                
-        in_memory:
-            memory: 
-                users:
-                    admin:
-                        password: admin
-                        roles: ROLE_ADMIN
+#        in_memory:
+#            memory: 
+#                users:
+#                    admin:
+#                        password: admin
+#                        roles: ROLE_ADMIN
     
     encoders: 
         Symfony\Component\Security\Core\User\User : plaintext
-        AppBundle\Entity\Client: plaintext
+        AppBundle\Entity\Utilisateur: plaintext
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -33,12 +35,14 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-            provider: in_memory
+            provider: in_database
             
             
             
     access_control:
         - {path: admin*, roles: ROLE_ADMIN}
+        - {path: client*, roles: ROLE_CLIENT}
+        - {path: livreur*, roles: ROLE_LIVREUR}
 #        - {path: admin/livreur*, roles: ROLE_ADMIN}
 #        - {path: admin/commande*, roles: ROLE_ADMIN}
             

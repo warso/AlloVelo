@@ -21,6 +21,9 @@ class CoteClientControleur extends Controller {
         $form->handleRequest($request); // applique le form binding
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $util = $this->getUser();
+            
             // le formulaire est valide
             // calculer le prix en fonction des 2 adresses
             // appeler la fonction de Warsama
