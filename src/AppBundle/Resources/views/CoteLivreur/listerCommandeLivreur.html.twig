@@ -1,6 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}AppBundle:CoteLivreurControleur:creerCommande{% endblock %}
+{% block title %}AppBundle:CoteLivreurControleur:listerCommande{% endblock %}
 
 {% block body %}
     <h1> Liste des Commandes du Livreur </h1>
@@ -12,7 +12,6 @@
             <th>Adresse de Livraison</th>
             <th>Etat</th>
         </tr>
-
         {%for cmdAct in commandesLiv %}
             <tr>
                 <td>{{cmdAct.client}}</td>
@@ -21,7 +20,8 @@
                 <td>{{cmdAct.etat}}</td>
             </tr>
         {% endfor %}
-
     </table>
+    
+    
 
 {% endblock %}

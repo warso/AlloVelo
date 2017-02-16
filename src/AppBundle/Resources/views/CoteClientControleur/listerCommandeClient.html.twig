@@ -2,6 +2,19 @@
 
 {% block title %}AppBundle:CoteClientControleur:creerCommande{% endblock %}
 
+{% block javascripts %}
+    <script src="{{ asset('JS/jquery-3.1.1.js') }}" type="text/javascript"></script>
+    <script>
+        
+        $(function(){
+            
+            setInterval(function(){
+                window.location.reload();
+            }, 500);
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
     <h1> Liste de mes commandes </h1>
 
@@ -21,7 +34,7 @@
                 <td>{{cmdAct.fraisLivraison}}</td>
 
                 {% if (not cmdAct.dateReception is null) %}
-                    <td> réceptionnée par {{ cmdAct.livreur }} à {{cmdAct.dateReception}} </td>
+                    <td> réceptionnée par {{ cmdAct.livreur }} à {{cmdAct.dateReception | date}} </td>
                 {% endif %}
 {#                {% if (not cmdAct.dateLivraison is null) %}#}
                     <td> <a href="{{ path("terminerCommande", {idCommande:cmdAct.id} ) }}" >terminer la commande</a></td>
@@ -29,7 +42,7 @@
                 {% if (cmdAct.etat=="ATTRIBUEE") %}
                     <td> choisie par {{ cmdAct.livreur }}  </td>
                 {% elseif (cmdAct.etat=="LIVREE") %}
-                    <td> Livrée  à  {{cmdAct.dateLivraison}} </td>
+                    <td> Livrée  à  {{cmdAct.dateLivraison | date}} </td>
                 {%else%}
                     <td>{{cmdAct.etat}}</td>
                 {% endif %}
