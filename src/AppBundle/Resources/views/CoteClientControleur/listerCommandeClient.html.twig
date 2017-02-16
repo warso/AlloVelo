@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:CoteClientControleur:creerCommande{% endblock %}
+
+{% block body %}
+    <h1> Liste des Commandes du Client </h1>
+
+    {%for cmdAct in commandesCli %}
+        Client : {{commandesCli.client}}
+        Date de commande : {{commandesCli.dateCommande}}
+        Adresse de Livraison : {{commandesCli.adresseLivraison}}
+        Etat de la commande : {{commandesCli.etat}}
+    {% endfor %}
+
+{% endblock %}
