@@ -27,24 +27,63 @@ class CommandeService
         $this->em = $em;
     }
 
-    public function creerCommande($adresseReception, $adresseLivraison, $fraisLivraison)
+    public function creerCommande($adresseReception, $adresseLivraison, $fraisLivraison, $user)
     {
+        // récupérer un client en tant qu'entité
+        $user = $this->em->find("AppBundle:Client", $user->getId());
         
+        // créer une commande
+        $cmde = new \AppBundle\Entity\Commande();
+        $cmde->setAdresseLivraison($adresseLivraison);
+        $cmde->setAdresseReception($adresseReception);
+        $cmde->setClient($user);
+        $cmde->setEtat("PAYEE");
+        $cmde->setDateCommande(new \DateTime());
+        // faire l'inscription de la commande en bdd (persist)
+        $this->em->persist($cmde);
+        $this->em->flush();
+    }
+    
+    // attribue une commande à un livreur 
+    public function commandeAttribuee($cmd, $livreur)
+    {
+        // récupérer le livreur en tant qu'entité
+        $livreur = $this->em->find("AppBundle:Livreur", $livreur->getId());
         
-//        // récupérer un client depuis la session
-//        $client = $request->getSession()->get("client");
-//            $user = $em->find("AppBundle:Utilisateur", $user->getId());
-//        
-//        // créer une commande
-//        $cmde = new \AppBundle\Entity\Commande();
-//        $cmde->setAdresseLivraison($adresseLivraison);
-//        $cmde->setAdresseReception($adresseReception);
-//        $cmde->setClient($client);
-//        $cmde->setEtat("PAYEE");
-//        $cmde->setDateCommande(new \date());
-//        // faire l'inscription de la commande en bdd (persist)
-//        $this->em->persist($cmde);
-//        $this->em->flush();
+        // modifier la commande
+        $commande = $this->em->find("AppBundle:Commande", $cmd->getId());
+//        $commande = new \AppBundle\Entity\Commande();
+        $commande->setLivreur($livreur);
+        $commande->setEtat("ATTRIBUEE");
+        // faire les modifs de la commande en bdd (persist)
+        $this->em->persist($commande);
+        $this->em->flush();
+    }
+    
+     //  commande réceptionnée par le livreur 
+    public function commandeReceptionnee($cmd)
+    {
+        // modifier la commande
+        $commande = $this->em->find("AppBundle:Commande", $cmd->getId());
+//        $commande = new \AppBundle\Entity\Commande();
+        $commande->setEtat("RECEPTIONNEE");
+        $commande->setDateReception(new \DateTime());
+        // faire les modifs de la commande en bdd (persist)
+        $this->em->persist($commande);
+        $this->em->flush();
+    }
+    
+     //  le client indique que la commande est terminée 
+    public function commandeLivree($cmd)
+    {
+        // modifier la commande
+        $commande = $this->em->find("AppBundle:Commande", $cmd->getId());
+//        $commande = new \AppBundle\Entity\Commande();
+        $commande->setEtat("LIVREE");
+        $commande->setDateLivraison(new \DateTime());
+        // faire les modifs de la commande en bdd (persist)
+        $this->em->persist($commande);
+        $this->em->flush();
     }
 
 }
