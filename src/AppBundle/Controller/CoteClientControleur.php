@@ -8,26 +8,30 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * @Route("/client")
  */
-
-class CoteClientControleur extends Controller {
+class CoteClientControleur extends Controller
+{
 
     /**
      * @Route("/creerCommande", name="creerCommande")
      */
-    public function creerCommandeAction(\Symfony\Component\HttpFoundation\Request $request) {
+    public function creerCommandeAction(\Symfony\Component\HttpFoundation\Request $request)
+    {
         // créer un DTO
         $dto = new \AppBundle\DTO\CommandeDTO();
         $form = $this->createForm(\AppBundle\Form\CommandeClientType::class, $dto); // crée le formulaire
         $form->handleRequest($request); // applique le form binding
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            $util = $this->getUser();
-            
+        if ($form->isSubmitted() && $form->isValid())
+        {
+
             // le formulaire est valide
             // calculer le prix en fonction des 2 adresses
             // appeler la fonction de Warsama
             // mettre tout ça en base
+
+            $util = $this->getUser();
+            $fraisLivraison = 5.6;
+            $this->get("commande_service")->creerCommande($dto->getAdresseReception(), $dto->getAdresseLivraison(), $fraisLivraison, $util);
         }
         // afficher le form !!!
         return $this->render('AppBundle:CoteClientControleur:creer_commande.html.twig', array(
@@ -38,7 +42,8 @@ class CoteClientControleur extends Controller {
     /**
      * @Route("/listerCommande", name="listerCommande")
      */
-    public function listerCommandeAction() {
+    public function listerCommandeAction()
+    {
 
         $qb = $this->getDoctrine()->getManager()->createQueryBuilder();
 

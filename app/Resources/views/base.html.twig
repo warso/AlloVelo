@@ -18,6 +18,7 @@
 
                 {% if (app.session.get("client")) %}
                     Bienvenue {{app.session.get("client").login}}
+                    <a href="{{path('listerCommande')}}">Liste des commandes</a>
                     <a href="{{path('deconnexionClient')}}">Deconnexion</a>
                 {% else %}
                     <a href="{{path('inscriptionClient')}}">Inscription</a>
