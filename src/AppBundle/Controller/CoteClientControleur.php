@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class CoteClientControleurController extends Controller
+class CoteClientControleur extends Controller
 {
     /**
      * @Route("/creerCommande", name="creerCommande")
@@ -29,6 +29,12 @@ class CoteClientControleurController extends Controller
         return $this->render('AppBundle:CoteClientControleur:creer_commande.html.twig', array(
             // ...
         ));
+    }
+    
+    public function listerCommandeAction() {
+        
+        
+        
     }
 
 }
