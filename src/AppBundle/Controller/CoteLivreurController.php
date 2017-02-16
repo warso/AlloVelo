@@ -28,5 +28,27 @@ class CoteLivreurController extends Controller {
         return $this->render('AppBundle:CoteLivreur:listerCommandeLivreur.html.twig', array("commandesLiv" => $commande));
         // ...
     }
+    /**
+     * @Route ("/listerLivraisonFini")
+     */
+     public function listerLivraisonFini() {
+        
+        $qb = $this->getDoctrine()->getManager()->createQueryBuilder();
+//        $qb = new \Doctrine\ORM\QueryBuilder;
+        $qb->select("c")
+                ->from("AppBundle:Commande", "c")
+                ->where("c.client = :client")
+                ->andWhere("c.etat = 'LIVREE'")
+                ->setParameter("client",$this->getUser());
+                
+
+        $query = $qb->getQuery();
+
+        $commande = $query->getResult();
+        //affiche le formulaire
+        
+        return $this->render('AppBundle:CoteLivreur:listerLivraisonFini.html.twig', array("commandesLiv" => $commande));
+
+    }
 
 }
