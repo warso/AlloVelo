@@ -12,5 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Admin extends Utilisateur
 {
-
+    public function __toString() {
+        return $this->getLogin();
+    }
 }

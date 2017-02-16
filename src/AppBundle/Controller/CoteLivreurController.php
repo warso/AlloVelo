@@ -8,21 +8,25 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * @Route ("/livreur")
  */
-class CoteLivreurController extends Controller
-{
+class CoteLivreurController extends Controller {
+
     /**
-     * @Route("/ListeProduit")
+     * @Route("/listeProduit")
      */
-    public function ListeProduitAction()
-    {
-      $qb->select("c")
+    public function ListeProduitAction() {
+        $qb = $this->getDoctrine()->getManager()->createQueryBuilder();
+
+        $qb->select("c")
                 ->from("AppBundle:Commande", "c")
-                ->orderBy("c.id");
-      
-        return $this->render('AppBundle:CoteLivreur:liste_produit.html.twig', array("mesCommandes"=> $commandes ));
-            // ...
-      
+                ->join("c.livreur", "cl")
+                ->orderBy("c.dateCommande");
+
+        $query = $qb->getQuery();
+
+        $commande = $query->getResult();
+        //affiche le formulaire
+        return $this->render('AppBundle:CoteLivreur:listerCommandeLivreur.html.twig', array("commandesLiv" => $commande));
+        // ...
     }
 
 }
- 

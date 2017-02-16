@@ -23,8 +23,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @DiscriminatorColumn(name="disc", type="string")
  * 
  */
-class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface, \Serializable
-{
+class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface, \Serializable {
 
     /**
      * @var int
@@ -34,6 +33,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @var string
      *
@@ -76,8 +76,6 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      */
     private $mdp;
 
-    
-
     /**
      * Set nom
      *
@@ -85,8 +83,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return Utilisateur
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -97,8 +94,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -109,8 +105,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return Utilisateur
      */
-    public function setPrenom($prenom)
-    {
+    public function setPrenom($prenom) {
         $this->prenom = $prenom;
 
         return $this;
@@ -121,8 +116,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return string
      */
-    public function getPrenom()
-    {
+    public function getPrenom() {
         return $this->prenom;
     }
 
@@ -133,8 +127,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return Utilisateur
      */
-    public function setTelephone($telephone)
-    {
+    public function setTelephone($telephone) {
         $this->telephone = $telephone;
 
         return $this;
@@ -145,8 +138,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return string
      */
-    public function getTelephone()
-    {
+    public function getTelephone() {
         return $this->telephone;
     }
 
@@ -157,8 +149,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return Utilisateur
      */
-    public function setMail($mail)
-    {
+    public function setMail($mail) {
         $this->mail = $mail;
 
         return $this;
@@ -169,8 +160,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return string
      */
-    public function getMail()
-    {
+    public function getMail() {
         return $this->mail;
     }
 
@@ -181,8 +171,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return Utilisateur
      */
-    public function setLogin($login)
-    {
+    public function setLogin($login) {
         $this->login = $login;
 
         return $this;
@@ -193,8 +182,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return string
      */
-    public function getLogin()
-    {
+    public function getLogin() {
         return $this->login;
     }
 
@@ -205,8 +193,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return Utilisateur
      */
-    public function setMdp($mdp)
-    {
+    public function setMdp($mdp) {
         $this->mdp = $mdp;
 
         return $this;
@@ -217,8 +204,7 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return string
      */
-    public function getMdp()
-    {
+    public function getMdp() {
         return $this->mdp;
     }
 
@@ -227,48 +213,44 @@ class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
-    public function eraseCredentials()
-    {
+    public function eraseCredentials() {
         
     }
 
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->mdp;
     }
 
-    public function getRoles()
-    {
+    public function getRoles() {
         $nomClasse = explode("\\", get_class($this));
         $nomClasse = $nomClasse[2];
-            
+
         $role = "ROLE_" . strtoupper($nomClasse);
-        return array( $role );
+        return array($role);
     }
 
-    public function getSalt()
-    {
+    public function getSalt() {
         
     }
 
-    public function getUsername()
-    {
+    public function getUsername() {
         return $this->login;
     }
 
-    public function serialize()
-    {
+    public function serialize() {
         
     }
 
-    public function unserialize($serialized)
-    {
+    public function unserialize($serialized) {
         
+    }
+
+    public function __toString() {
+        return $this->login;
     }
 
 }
