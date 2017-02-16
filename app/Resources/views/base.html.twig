@@ -20,10 +20,10 @@
                     Bienvenue {{app.user.getLogin()}}
                     <a href="{{path('listerCommande')}}">Liste des commandes</a>
                     <a href="{{path('creerCommande')}}">Créer une commande</a>
-                    <a href="{{path('deconnexionClient')}}">Deconnexion</a>
+                    <a href="{{path('logout')}}">Deconnexion</a>
                 {% else %}
                     <a href="{{path('inscriptionClient')}}">Inscription</a>
-                    <a href="{{path('connexionClient')}}">Connexion</a>
+                    <a href="{{path('login')}}">Connexion</a>
                 {% endif %}
 
             </fieldset>
@@ -37,9 +37,9 @@
 
                 {% if (app.user ) %}
                     Bienvenue {{app.user.getLogin()}}
-                    <a href="{{path('deconnexion')}}">Deconnexion</a>
+                    <a href="{{path('logout')}}">Deconnexion</a>
                 {% else %}
-                    <a href="{{path('connection')}}">Connexion</a>
+                    <a href="{{path('login')}}">Connexion</a>
                 {% endif %}
 
             </fieldset>

@@ -37,6 +37,13 @@ security:
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             provider: in_database
             
+            form_login:
+                login_path: /login
+                check_path: /login
+            logout:
+                path: /logout
+                target: /accueil
+            
             
             
     access_control:

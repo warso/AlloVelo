@@ -23,7 +23,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @DiscriminatorColumn(name="disc", type="string")
  * 
  */
-class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface, \Serializable {
+class Utilisateur implements \Symfony\Component\Security\Core\User\UserInterface {
 
     /**
      * @var int

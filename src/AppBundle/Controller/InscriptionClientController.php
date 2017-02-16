@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class InscriptionClientController extends Controller
 {
+
     /**
      * @Route("/inscriptionClient", name="inscriptionClient")
      */
@@ -14,7 +15,7 @@ class InscriptionClientController extends Controller
     {
         $dto = new \AppBundle\DTO\InscriptionClientDTO(); // crée un DTO
         $form = $this->createForm(\AppBundle\Form\InscriptionClientType::class, $dto); // crée le formulaire
-        
+
         $form->handleRequest($req); // applique le form binding
 
         if ($form->isSubmitted() && $form->isValid())
@@ -28,11 +29,11 @@ class InscriptionClientController extends Controller
             $user->setNom($dto->getNom());
             $user->setPrenom($dto->getPrenom());
             $user->setTelephone($dto->getTelephone());
-            
+
             $this->get("client_service")->inscrire($user);
-            
+
 //            return $this->render("::message.html.twig", array("message" => "inscription réussie"));
-            return  $this->redirectToRoute('connexionClient');
+            return $this->redirectToRoute('connexionClient');
         }
 
         // ici le formulaire n'a pas été posté ou est invalide
@@ -40,45 +41,25 @@ class InscriptionClientController extends Controller
     }
 
     /**
-     * @Route("/connexionClient", name="connexionClient")
+     * @Route("/login", name="login")
      */
     public function connexionClientAction(\Symfony\Component\HttpFoundation\Request $req)
     {
-        $dto = new \AppBundle\DTO\LoginClientDTO; // crée un DTO de type Login
-        $form = $this->createForm(\AppBundle\Form\LoginClientType::class, $dto); // crée le formulaire
-        $form->handleRequest($req); // applique le form binding
-        $message = "";
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            // le formulaire est valide
-            // il faut vérifier que le login / mot de passe existe bien dans la base
-            
-            $user = $this->getDoctrine()->getRepository("AppBundle:Client")
-                    ->recupClient($dto->getLogin(), $dto->getMotDePasse());
-
-            if ($user == NULL)
-            {
-                // ici on n'a pas retrouvé l'utilisateur
-                $message = "Login / mot de passe invalide.";
-            } 
-            else
-            {
-                // ici on a trouvé l'utilisateur
-                // puis mettre l'id et le login de l'utilisateur en session
-                $req->getSession()->set("client", $user);
-                // affiche la liste des recettes 
-                return  $this->redirectToRoute('listeDernieresCommandes');
-            }
+        // Si le visiteur est déjà identifié, on le redirige vers l'accueil
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('accueil');
         }
-
-        // ici le formulaire n'a pas été posté ou est invalide, ou utilisateur non trouvé
-        return $this->render('AppBundle:InscriptionClient:connexion_client.html.twig', array(
-            "monForm" => $form->createView(), "message" => $message
+        $authentivationUtils = $this->get('security.authentication_utils');
+        $error = $authentivationUtils->getLastAuthenticationError();
+        $lastUsername = $authentivationUtils->getLastUsername();
+        return $this->render('AppBundle:Connection:connection.html.twig', array(
+                    'last_username' => $lastUsername,
+                    'error' => $error
         ));
     }
 
     /**
-     * @Route("/deconnexionClient", name="deconnexionClient")
+     * @Route("/logout", name="logout")
      */
     public function deconnexionClientAction(\Symfony\Component\HttpFoundation\Request $req)
     {
@@ -86,8 +67,7 @@ class InscriptionClientController extends Controller
         // on vide juste les sessions
         $req->getSession()->clear();
         // page de redirection 
-        return  $this->redirectToRoute('accueil');
-        
+        return $this->redirectToRoute('accueil');
     }
 
 }
