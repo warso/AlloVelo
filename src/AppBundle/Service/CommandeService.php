@@ -36,6 +36,7 @@ class CommandeService
         $cmde = new \AppBundle\Entity\Commande();
         $cmde->setAdresseLivraison($adresseLivraison);
         $cmde->setAdresseReception($adresseReception);
+        $cmde->setFraisLivraison($fraisLivraison);
         $cmde->setClient($user);
         $cmde->setEtat("PAYEE");
         $cmde->setDateCommande(new \DateTime());

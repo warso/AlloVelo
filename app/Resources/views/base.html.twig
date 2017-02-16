@@ -11,14 +11,15 @@
     <h2> Menu </h2>
 
     <div id="connexionClient">
-{#        {{ app.user.getLogin() }}#}
-        {% if not is_granted("ROLE_CLIENT") %}
+        {#        {{ app.user.getLogin() }}#}
+        {% if not is_granted("ROLE_LIVREUR") %}
             <fieldset>
                 <legend>Espace Client</legend>
 
-                {% if (app.session.get("client")) %}
-                    Bienvenue {{app.session.get("client").login}}
+                {% if (app.user) %}
+                    Bienvenue {{app.user.getLogin()}}
                     <a href="{{path('listerCommande')}}">Liste des commandes</a>
+                    <a href="{{path('creerCommande')}}">Créer une commande</a>
                     <a href="{{path('deconnexionClient')}}">Deconnexion</a>
                 {% else %}
                     <a href="{{path('inscriptionClient')}}">Inscription</a>
@@ -30,12 +31,12 @@
     </div>
 
     <div id="connexionLivreur">
-        {% if not (app.session.get("client")) %}
+        {% if not is_granted("ROLE_CLIENT") %}
             <fieldset>
                 <legend>Espace Livreur</legend>
 
-                {% if (app.session.get("livreur")) %}
-                    Bienvenue {{app.session.get("livreur").login}}
+                {% if (app.user ) %}
+                    Bienvenue {{app.user.getLogin()}}
                     <a href="{{path('deconnexion')}}">Deconnexion</a>
                 {% else %}
                     <a href="{{path('connection')}}">Connexion</a>
@@ -48,7 +49,7 @@
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
 {% block footer %}
-    par Warsama, Alexis, et Hélène
+    par Alexis, Hélène, et Warsama
 {% endblock %}
 </body>
 </html>
