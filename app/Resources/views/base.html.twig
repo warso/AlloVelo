@@ -11,7 +11,7 @@
     <h2> Menu </h2>
 
     <div id="connexionClient">
-        {{ app.user.getLogin() }}
+{#        {{ app.user.getLogin() }}#}
         {% if not is_granted("ROLE_CLIENT") %}
             <fieldset>
                 <legend>Espace Client</legend>
