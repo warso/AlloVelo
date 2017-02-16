@@ -5,11 +5,23 @@
 {% block body %}
     <h1> Liste des Commandes du Livreur </h1>
 
-    {%for cmdAct in commandesLiv %}
-        Client : {{cmdAct.client}}
-        Date de commande : {{cmdAct.dateCommande | date()}}
-        Adresse de Livraison : {{cmdAct.adresseLivraison}}
-        Etat de la commande : {{cmdAct.etat}}
-    {% endfor %}
+    <table>
+        <tr>
+            <th>Client</th>
+            <th>Date de commande</th>
+            <th>Adresse de Livraison</th>
+            <th>Etat</th>
+        </tr>
+
+        {%for cmdAct in commandesLiv %}
+            <tr>
+                <td>{{cmdAct.client}}</td>
+                <td>{{cmdAct.dateCommande | date}}</td>
+                <td>{{cmdAct.adresseLivraison}}</td>
+                <td>{{cmdAct.etat}}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
 
 {% endblock %}
