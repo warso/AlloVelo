@@ -13,15 +13,29 @@
             <th>Frais de Livraison</th>
             <th>Etat</th>
         </tr>
-    {%for cmdAct in commandesCli %}
-        <tr>
-            <td>{{cmdAct.dateCommande | date}}</td>
-            <td>{{cmdAct.adresseReception}}</td>
-            <td>{{cmdAct.adresseLivraison}}</td>
-            <td>{{cmdAct.fraisLivraison}}</td>
-            <td>{{cmdAct.etat}}</td>
-        </tr>
-    {% endfor %}
+        {%for cmdAct in commandesCli %}
+            <tr>
+                <td>{{cmdAct.dateCommande | date}}</td>
+                <td>{{cmdAct.adresseReception}}</td>
+                <td>{{cmdAct.adresseLivraison}}</td>
+                <td>{{cmdAct.fraisLivraison}}</td>
+
+                {% if (not cmdAct.dateReception is null) %}
+                    <td> réceptionnée par {{ cmdAct.livreur }} à {{cmdAct.dateReception}} </td>
+                {% endif %}
+{#                {% if (not cmdAct.dateLivraison is null) %}#}
+                    <td> <a href="{{ path("terminerCommande", {idCommande:cmdAct.id} ) }}" >terminer la commande</a></td>
+{#                {% endif %}#}
+                {% if (cmdAct.etat=="ATTRIBUEE") %}
+                    <td> choisie par {{ cmdAct.livreur }}  </td>
+                {% elseif (cmdAct.etat=="LIVREE") %}
+                    <td> Livrée  à  {{cmdAct.dateLivraison}} </td>
+                {%else%}
+                    <td>{{cmdAct.etat}}</td>
+                {% endif %}
+
+            </tr>
+        {% endfor %}
     </table>
 
 {% endblock %}

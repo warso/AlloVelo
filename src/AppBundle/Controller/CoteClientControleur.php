@@ -67,5 +67,14 @@ class CoteClientControleur extends Controller
                     "commandesCli" => $commande
         ));
     }
+    
+    /**
+     * Lister les commandes du client en cours
+     * @Route("/terminerCommande/{idCommande}", name="terminerCommande")
+     */
+    public function terminerCommande($idCommande)
+    {
+        
+    }
 
 }
