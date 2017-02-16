@@ -9,4 +9,8 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]  
         # permet de passer un argument au constructeur de ClientService
         
+    commande_service:
+        class: AppBundle\Service\CommandeService
+        arguments: ["@doctrine.orm.entity_manager"]  
+        
 
