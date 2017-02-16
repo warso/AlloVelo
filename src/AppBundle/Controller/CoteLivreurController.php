@@ -11,14 +11,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class CoteLivreurController extends Controller {
 
     /**
-     * @Route("/listeProduit")
+     * @Route("/listeCommande")
      */
-    public function ListeProduitAction() {
+    public function listeCommandeAction() {
         $qb = $this->getDoctrine()->getManager()->createQueryBuilder();
 
         $qb->select("c")
                 ->from("AppBundle:Commande", "c")
-                ->join("c.livreur", "cl")
+                ->where("c.livreur is NULL")
                 ->orderBy("c.dateCommande");
 
         $query = $qb->getQuery();

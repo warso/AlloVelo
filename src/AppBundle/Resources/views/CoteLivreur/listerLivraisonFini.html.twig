@@ -3,10 +3,11 @@
 {% block title %}AppBundle:CoteLivreurControleur:creerCommande{% endblock %}
 
 {% block body %}
-    <h1> Liste des Commandes du Livreur </h1>
+    <h1> Liste des Commandes terminées du Livreur </h1>
 
     {%for cmdAct in commandesLiv %}
-        Client : {{cmdAct.client}}
+        Client : {{cmdAct.livreur}}
+        Commande : {{cmdAct}}
         Date de commande : {{cmdAct.dateCommande | date()}}
         Adresse de Livraison : {{cmdAct.adresseLivraison}}
         Etat de la commande : {{cmdAct.etat}}
