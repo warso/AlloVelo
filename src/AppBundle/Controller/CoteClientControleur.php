@@ -74,7 +74,9 @@ class CoteClientControleur extends Controller
      */
     public function terminerCommande($idCommande)
     {
+        $this->get("commande_service")->commandeLivree($idCommande);
         
+        return  $this->redirectToRoute('listerCommande');
     }
 
 }

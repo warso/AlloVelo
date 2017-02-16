@@ -75,10 +75,10 @@ class CommandeService
     }
     
      //  le client indique que la commande est terminée 
-    public function commandeLivree($cmd)
+    public function commandeLivree($idCmd)
     {
         // modifier la commande
-        $commande = $this->em->find("AppBundle:Commande", $cmd->getId());
+        $commande = $this->em->find("AppBundle:Commande", $idCmd);
 //        $commande = new \AppBundle\Entity\Commande();
         $commande->setEtat("LIVREE");
         $commande->setDateLivraison(new \DateTime());
