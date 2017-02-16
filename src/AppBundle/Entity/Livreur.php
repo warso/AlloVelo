@@ -11,9 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\LivreurRepository")
  */
 class Livreur extends Utilisateur
-{
-
-    
+{   
 
     /**
      *
@@ -27,11 +25,6 @@ class Livreur extends Utilisateur
      * @ORM\Column(name="localisation", type="string", length=255, nullable=true)
      */
     private $localisation;
-
-    public function __toString()
-    {
-        return $this->login;
-    }
 
     /**
      * Constructor

@@ -18,11 +18,6 @@ class Client extends Utilisateur
      */
     private $commandes;
 
-    public function __toString()
-    {
-        return $this->login;
-    }
-
     /**
      * Constructor
      */

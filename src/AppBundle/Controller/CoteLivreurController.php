@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class CoteLivreurController extends Controller
 {
     /**
-     * @Route("/ListeProduit")
+     * @Route("/listeProduit")
      */
     public function ListeProduitAction()
     {
