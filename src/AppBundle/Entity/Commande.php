@@ -60,6 +60,13 @@ class Commande {
      * @ORM\Column(name="fraisLivraison", type="float", nullable=true)
      */
     private $fraisLivraison;
+    
+    /**
+     *
+     * @var integer
+     * @ORM\Column(name="distance", type="float", nullable=true)
+     */
+    private $distance;
 
     /**
      * @var string
@@ -298,5 +305,29 @@ class Commande {
     public function getAdresseLivraison()
     {
         return $this->adresseLivraison;
+    }
+
+    /**
+     * Set distance
+     *
+     * @param integer $distance
+     *
+     * @return Commande
+     */
+    public function setDistance($distance)
+    {
+        $this->distance = $distance;
+
+        return $this;
+    }
+
+    /**
+     * Get distance
+     *
+     * @return integer
+     */
+    public function getDistance()
+    {
+        return $this->distance;
     }
 }

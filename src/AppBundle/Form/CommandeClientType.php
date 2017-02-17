@@ -19,7 +19,9 @@ class CommandeClientType extends \Symfony\Component\Form\AbstractType
     {
         $builder->add('adresseReception', \Symfony\Component\Form\Extension\Core\Type\TextareaType::class)
                 ->add('adresseLivraison', \Symfony\Component\Form\Extension\Core\Type\TextareaType::class)
-                ->add("submit", \Symfony\Component\Form\Extension\Core\Type\SubmitType::class);
+                ->add('distance', \Symfony\Component\Form\Extension\Core\Type\TextType::class)
+                ->add('fraisLivraison', \Symfony\Component\Form\Extension\Core\Type\TextType::class)
+                ->add("Valider la commande", \Symfony\Component\Form\Extension\Core\Type\SubmitType::class);
     }
 
 }

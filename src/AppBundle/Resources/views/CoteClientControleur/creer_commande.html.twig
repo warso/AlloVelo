@@ -1,9 +1,54 @@
 {% extends "::base.html.twig" %}
 
+{% block javascripts %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB47pBJnd5Dh6LSe10iCO6kFl7EM8nMlI0"></script>
+
+    <script type="text/javascript">
+
+        function calculerDureeDistance()
+            {
+                adrClient = "paris, porte de la chapelle";
+                adrLivraison = "paris, place stalingrad";
+                
+                adrClient = document.getElementById('commande_client_adresseReception').value;
+                adrLivraison = document.getElementById('commande_client_adresseLivraison').value;
+
+                var service = new google.maps.DistanceMatrixService();
+                service.getDistanceMatrix(
+                        {
+                            origins: [adrClient],
+                            destinations: [adrLivraison],
+                            travelMode: google.maps.TravelMode.BICYCLING,
+                        }, function (response)
+                    {// Callback
+
+
+                        var elements = response.rows[0].elements[0];
+                        var distanceEnMetres = elements.distance.value;
+                        var dureeEnSecondes = elements.duration.value;
+
+                        document.getElementById('commande_client_distance').value = distanceEnMetres;
+                        document.getElementById('commande_client_fraisLivraison').value = distanceEnMetres * 0.0025;
+                    });
+            }
+
+    </script>
+
+
+{% endblock %}
+
+{% block stylesheets %}
+
+
+{% endblock %}
 
 {% block body %}
-<h1>Créer une nouvelle course</h1>
+    <h1>Créer une nouvelle course</h1>
 
-{{ form(monForm) }}
+    <input type="button" onclick="calculerDureeDistance()" value="calculer la distance et le prix">
+    {{ form(monForm) }}
+
+
+
 
 {% endblock %}

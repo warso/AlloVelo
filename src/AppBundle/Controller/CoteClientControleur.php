@@ -25,13 +25,14 @@ class CoteClientControleur extends Controller
         {
 
             // le formulaire est valide
-            // calculer le prix en fonction des 2 adresses
+            // le prix et la distance sont récupéres dans le formulaire
             // appeler la fonction de Warsama
             // mettre tout ça en base
 
             $util = $this->getUser();
-            $fraisLivraison = 5.6;
-            $this->get("commande_service")->creerCommande($dto->getAdresseReception(), $dto->getAdresseLivraison(), $fraisLivraison, $util);
+            $fraisLivraison = $dto->getFraisLivraison();
+            $distance = $dto->getDistance();
+            $this->get("commande_service")->creerCommande($dto->getAdresseReception(), $dto->getAdresseLivraison(), $fraisLivraison, $distance, $util);
         
              return  $this->redirectToRoute('listerCommande');
         }
