@@ -2,15 +2,17 @@
 
 {% block body %}
     <h1>Client creation</h1>
-
+ <div class="well">
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
+ </div>
+ <ul class="list-unstyled">
 
-    <ul>
         <li>
-            <a href="{{ path('client_index') }}">Back to the list</a>
+            <a href="{{ path('client_index') }}"class="btn btn-primary">Retour à la liste</a>
+        </li>
         </li>
     </ul>
 {% endblock %}

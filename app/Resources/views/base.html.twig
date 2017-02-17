@@ -6,13 +6,14 @@
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    {% block javascripts %}{% endblock %}
+{% block javascripts %}{% endblock %}
 </head>
 <body>
     <header><h1> Bienvenue sur AlloVélo </h1></header>
     <h2> Menu </h2>
 
-    <div id="connexionClient">
+    <div class="well" id="connexionLivreur">
+
         {#        {{ app.user.getLogin() }}#}
         {% if not is_granted("ROLE_LIVREUR") %}
             <fieldset>
@@ -32,7 +33,7 @@
         {% endif %}
     </div>
 
-    <div id="connexionLivreur">
+    <div class="well" id="connexionLivreur">
         {% if not is_granted("ROLE_CLIENT") %}
             <fieldset>
                 <legend>Espace Livreur</legend>

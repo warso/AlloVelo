@@ -18,7 +18,9 @@
 {% block body %}
     <h1> Liste des commandes choisies </h1>
 
-    <table>
+     <div class="table-responsive">
+
+        <table class="table table-bordered table-hover">
         <tr>
             <th>Client</th>
             <th>Date de commande</th>
@@ -34,6 +36,7 @@
             </tr>
         {% endfor %}
     </table>
+     </div>
 
 
 

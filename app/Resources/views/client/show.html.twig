@@ -3,7 +3,9 @@
 {% block body %}
     <h1>Client</h1>
 
-    <table>
+      <div class="table-responsive">
+
+        <table class="table table-bordered table-hover">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -35,17 +37,21 @@
             </tr>
         </tbody>
     </table>
+      </div>
+             <ul class="list-unstyled list-inline">
 
     <ul>
         <li>
-            <a href="{{ path('client_index') }}">Back to the list</a>
+            <a href="{{ path('client_index') }}"class="btn btn-primary" >Retour à la liste</a>
+        </li>
         </li>
         <li>
-            <a href="{{ path('client_edit', { 'id': client.id }) }}">Edit</a>
+            <a href="{{ path('client_edit', { 'id': client.id }) }}"class="btn btn-warning" >Modifier</a>
+        </li>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                 <input type="submit"  value="Supprimer" class="btn btn-danger">
             {{ form_end(delete_form) }}
         </li>
     </ul>

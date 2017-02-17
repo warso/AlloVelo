@@ -16,8 +16,12 @@
 {% endblock %}
 
 {% block body %}
+       
     <h1> Liste des Commandes terminées du Livreur </h1>
-    <table>
+     <div class="table-responsive">
+
+        <table class="table table-bordered table-hover">
+   
         <tr>
             <th>Date de commande</th>
             <th>Adresse de réception</th>
@@ -39,4 +43,5 @@
             </tr>
         {% endfor %}
     </table>
+     </div>
 {% endblock %}

@@ -9,13 +9,13 @@
 
   {# Le formulaire, avec URL de soumission vers la route « login_check » comme on l'a vu #}
   <form action="{{ path('login') }}" method="post">
-    <label for="username">Login :</label>
+    <label for="username">Identifiant :</label>
     <input type="text" id="username" name="_username" value="{{ last_username }}" />
 
     <label for="password">Mot de passe :</label>
     <input type="password" id="password" name="_password" />
     <br />
-    <input type="submit" value="Connexion" />
+    <input type="submit" value="Connexion"  class="btn btn-danger" />
   </form>
 
 {% endblock %}

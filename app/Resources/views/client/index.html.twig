@@ -3,47 +3,55 @@
 {% block body %}
     <h1>Liste des Clients</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Telephone</th>
-                <th>Mail</th>
-                <th>Login</th>
-                <th>Mdp</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for client in clients %}
-            <tr>
-                <td><a href="{{ path('client_show', { 'id': client.id }) }}">{{ client.id }}</a></td>
-                <td>{{ client.nom }}</td>
-                <td>{{ client.prenom }}</td>
-                <td>{{ client.telephone }}</td>
-                <td>{{ client.mail }}</td>
-                <td>{{ client.login }}</td>
-                <td>{{ client.mdp }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('client_show', { 'id': client.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('client_edit', { 'id': client.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-lg-9">     
 
-    <ul>
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>Telephone</th>
+                            <th>Mail</th>
+                            <th>Login</th>
+                            <th>Mdp</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for client in clients %}
+                            <tr>
+                                <td><a href="{{ path('client_show', { 'id': client.id }) }}">{{ client.id }}</a></td>
+                                <td>{{ client.nom }}</td>
+                                <td>{{ client.prenom }}</td>
+                                <td>{{ client.telephone }}</td>
+                                <td>{{ client.mail }}</td>
+                                <td>{{ client.login }}</td>
+                                <td>{{ client.mdp }}</td>
+                                <td>
+                                    <ul class="list-unstyled list-inline">
+                                        <li>
+                                            <a href="{{ path('client_show', { 'id': client.id }) }}" class="btn btn-info">Voir</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('client_edit', { 'id': client.id }) }}" class="btn btn-warning">Modifier</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <ul class="list-unstyled">
         <li>
-            <a href="{{ path('client_new') }}">Create a new client</a>
+            <a href="{{ path('client_new') }}" class="btn btn-warning">Ajouter un utilisateur</a>
         </li>
     </ul>
 {% endblock %}
