@@ -1,13 +1,10 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 namespace AppBundle\Service;
-
 /**
  * Description of CommandeService
  *
@@ -21,12 +18,21 @@ class CommandeService
      */
     private $em;
     
-
-    function __construct(\Doctrine\ORM\EntityManagerInterface $em)
+    /**
+     * 
+     * @var float
+     */
+    private $tarif;
+    function __construct(\Doctrine\ORM\EntityManagerInterface $em, $tarif)
     {
         $this->em = $em;
+        $this->tarif = $tarif;
     }
-
+    
+    public function recupTarif()
+    {
+        return $this->tarif;
+    }
     public function creerCommande($adresseReception, $adresseLivraison, $fraisLivraison, $distance, $user)
     {
         // récupérer un client en tant qu'entité
@@ -87,5 +93,4 @@ class CommandeService
         $this->em->persist($commande);
         $this->em->flush();
     }
-
 }

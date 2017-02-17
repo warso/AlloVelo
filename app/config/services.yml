@@ -1,7 +1,7 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/service_container.html
 parameters:
-    tarif: 2.5 
+    tarif: 0.0025 
 
 services:
     client_service:
@@ -11,6 +11,4 @@ services:
         
     commande_service:
         class: AppBundle\Service\CommandeService
-        arguments: ["@doctrine.orm.entity_manager"]  
-        
-
+        arguments: ["@doctrine.orm.entity_manager", "%tarif%"] 
