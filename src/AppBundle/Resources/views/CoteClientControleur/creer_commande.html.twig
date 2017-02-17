@@ -96,12 +96,20 @@
 
 {% block body %}
     <h1>Créer une nouvelle course</h1>
+    <table width="100%">
+        <tr>
+            <td>
 
     <input type="button" onclick="calculerDureeDistance()" value="calculer la distance et le prix">
     {{ form(monForm) }}
+            </td>
+            <td>
 
     <div id="map">
 
     </div>
+            </td>
+        </tr>
+    </table>
 
 {% endblock %}
