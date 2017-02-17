@@ -38,9 +38,9 @@ class CoteLivreurController extends Controller {
 //        $qb = new \Doctrine\ORM\QueryBuilder;
         $qb->select("c")
                 ->from("AppBundle:Commande", "c")
-                ->where("c.client = :client")
+                ->where("c.livreur = :livreur")
                 ->andWhere("c.etat = 'LIVREE'")
-                ->setParameter("client", $this->getUser());
+                ->setParameter("livreur", $this->getUser());
 
 
         $query = $qb->getQuery();
@@ -61,11 +61,9 @@ class CoteLivreurController extends Controller {
         $qb->select("c")
                 ->from("AppBundle:Commande", "c")
                 ->where("c.livreur = :livreur")
-                ->andWhere("c.etat IN ('ATTRIBUEE', 'RECEPTIONNEE')")
+                ->andWhere("c.etat IN ('ATTRIBUEE')")
                 ->orderBy("c.etat","DESC")
                 ->setParameter("livreur", $this->getUser());
-
-
         $query = $qb->getQuery();
 
         $commande = $query->getResult();
@@ -74,6 +72,29 @@ class CoteLivreurController extends Controller {
         return $this->render('AppBundle:CoteLivreur:listerCommandeChoisi.html.twig', array("commandesCh" => $commande));
         
     }
+    
+    /**
+     * @Route ("/listeCommandeReceptionnee", name = "listeCommandeReceptionnee")
+     */
+    public function listeCommandeReceptionnee() {
+
+        $qb = $this->getDoctrine()->getManager()->createQueryBuilder();
+//        $qb = new \Doctrine\ORM\QueryBuilder;
+        $qb->select("c")
+                ->from("AppBundle:Commande", "c")
+                ->where("c.livreur = :livreur")
+                ->andWhere("c.etat IN ('RECEPTIONNEE')")
+                ->orderBy("c.etat","DESC")
+                ->setParameter("livreur", $this->getUser());
+        $query = $qb->getQuery();
+
+        $commande = $query->getResult();
+        //affiche le formulaire
+
+        return $this->render('AppBundle:CoteLivreur:listerCommandeReceptionnee.html.twig', array("commandesRec" => $commande));
+        
+    }
+
 
     /**
      * Livreur choisi sa commande à livrer
@@ -82,9 +103,17 @@ class CoteLivreurController extends Controller {
     public function choisirCommandeAction($idCommande) {
 
         $this->get("commande_service")->commandeAttribuee($idCommande, $this->getUser());
-
-
         return $this->redirectToRoute('listeCommandeChoisie');
+    }
+    
+        /**
+     * Livreur receptionne sa commande à livrer
+     * @Route("/receptionnerCommande/{idCommande}", name="receptionnerCommande")
+     */
+    public function receptionnerCommandeAction($idCommande) {
+
+        $this->get("commande_service")->commandeReceptionnee($idCommande, $this->getUser());
+        return $this->redirectToRoute('listeCommandeReceptionnee');
     }
 
 }

@@ -66,7 +66,7 @@ class CommandeService
     public function commandeReceptionnee($cmd)
     {
         // modifier la commande
-        $commande = $this->em->find("AppBundle:Commande", $cmd->getId());
+        $commande = $this->em->find("AppBundle:Commande", $cmd);
 //        $commande = new \AppBundle\Entity\Commande();
         $commande->setEtat("RECEPTIONNEE");
         $commande->setDateReception(new \DateTime());

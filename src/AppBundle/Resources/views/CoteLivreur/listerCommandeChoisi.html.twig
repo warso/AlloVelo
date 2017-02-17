@@ -18,25 +18,26 @@
 {% block body %}
     <h1> Liste des commandes choisies </h1>
 
-     <div class="table-responsive">
+    <div class="table-responsive">
 
         <table class="table table-bordered table-hover">
-        <tr>
-            <th>Client</th>
-            <th>Date de commande</th>
-            <th>Adresse de Livraison</th>
-            <th>Etat</th>
-        </tr>
-        {% for cmdAct in commandesCh %}
             <tr>
-                <td>{{cmdAct.client}}</td>
-                <td>{{cmdAct.dateCommande | date}}</td>
-                <td>{{cmdAct.adresseLivraison}}</td>
-                <td>{{cmdAct.etat}}</td>
+                <th>Client</th>
+                <th>Date de commande</th>
+                <th>Adresse de Livraison</th>
+                <th>Etat</th>
             </tr>
-        {% endfor %}
-    </table>
-     </div>
+            {% for cmdAct in commandesCh %}
+                <tr>
+                    <td>{{cmdAct.client}}</td>
+                    <td>{{cmdAct.dateCommande | date}}</td>
+                    <td>{{cmdAct.adresseLivraison}}</td>
+                    <td>{{cmdAct.etat}}</td>
+                    <td> <a href="{{ path("receptionnerCommande", {idCommande:cmdAct.id} ) }}" >Receptionner cette commande</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 
 
 

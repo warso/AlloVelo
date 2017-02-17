@@ -35,7 +35,7 @@
 
                 {% if (not cmdAct.dateReception is null) %}
                     <td> réceptionnée par {{ cmdAct.livreur }} à {{cmdAct.dateReception | date}} </td>
-                    {% if (not cmdAct.dateLivraison is null) %}
+                    {% if ( cmdAct.dateLivraison is null) %}
                         <td> <a href="{{ path("terminerCommande", {idCommande:cmdAct.id} ) }}" >terminer la commande</a></td>
                     {% endif %}
                 {% endif %}
