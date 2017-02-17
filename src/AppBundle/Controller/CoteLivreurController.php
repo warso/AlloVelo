@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class CoteLivreurController extends Controller {
 
     /**
-     * @Route("/listeCommande")
+     * @Route("/listeCommande", name = "listeCommande")
      */
     public function listeCommandeAction() {
         $qb = $this->getDoctrine()->getManager()->createQueryBuilder();
@@ -30,7 +30,7 @@ class CoteLivreurController extends Controller {
     }
 
     /**
-     * @Route ("/listerLivraisonFini")
+     * @Route ("/listerLivraisonFini", name = "listerLivraisonFini")
      */
     public function listerLivraisonFini() {
 
