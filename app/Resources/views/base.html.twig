@@ -38,6 +38,8 @@
 
                 {% if (app.user ) %}
                     Bienvenue {{app.user.getLogin()}}
+                    <a href="{{path('listeCommande')}}">Liste des commandes à livrer</a>
+                    <a href="{{path('listerLivraisonFini')}}">Liste des commandes livrées</a>
                     <a href="{{path('logout')}}">Deconnexion</a>
                 {% else %}
                     <a href="{{path('login')}}">Connexion</a>
@@ -46,10 +48,10 @@
             </fieldset>
         {% endif %}
     </div>
-<div class='container'>
-{% block body %}{% endblock %}
-        </div>
-        {% block javascripts %}{% endblock %}
+    <div class='container'>
+    {% block body %}{% endblock %}
+</div>
+{% block javascripts %}{% endblock %}
 {% block footer %}
     par Alexis, Hélène, et Warsama
 {% endblock %}
