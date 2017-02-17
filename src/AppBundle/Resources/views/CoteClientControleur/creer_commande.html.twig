@@ -4,14 +4,64 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB47pBJnd5Dh6LSe10iCO6kFl7EM8nMlI0"></script>
 
     <script type="text/javascript">
+        function stringURL(chaine)
+            {
+                var path = chaine;
+
+                path = path.toLowerCase();
+                path = path.replace(/ /g, '-');
+                path = path.replace(/'/g, '-');
+                path = path.replace(/\./g, '-');
+                path = path.replace(/\//g, '-');
+
+                path = path.replace(/--/g, '-');
+                path = path.replace(/--/g, '-');
+                path = path.replace(/--/g, '-');
+
+                path = path.replace(/é/g, 'e');
+                path = path.replace(/è/g, 'e');
+                path = path.replace(/ë/g, 'e');
+                path = path.replace(/ê/g, 'e');
+                path = path.replace(/à/g, 'a');
+                path = path.replace(/â/g, 'a');
+                path = path.replace(/á/g, 'a');
+                path = path.replace(/ï/g, 'i');
+                path = path.replace(/ì/g, 'i');
+                path = path.replace(/î/g, 'i');
+                path = path.replace(/ò/g, 'o');
+                path = path.replace(/ô/g, 'o');
+                path = path.replace(/ö/g, 'o');
+                path = path.replace(/õ/g, 'o');
+                path = path.replace(/ñ/g, 'n');
+                path = path.replace(/ń/g, 'n');
+
+                path = path.replace(/\{/g, '');
+                path = path.replace(/\}/g, '');
+                path = path.replace(/\[/g, '');
+                path = path.replace(/\]/g, '');
+                path = path.replace(/\)/g, '');
+                path = path.replace(/\(/g, '');
+                path = path.replace(/!/g, '');
+                path = path.replace(/"/g, '');
+                path = path.replace(/,/g, '');
+
+                path = path.replace(/-$/g, '');
+                path = path.replace(/^-/g, '');
+
+                return path;
+            }
 
         function calculerDureeDistance()
             {
-                adrClient = "paris, porte de la chapelle";
-                adrLivraison = "paris, place stalingrad";
-                
                 adrClient = document.getElementById('commande_client_adresseReception').value;
                 adrLivraison = document.getElementById('commande_client_adresseLivraison').value;
+
+                var texte = "<iframe style='width: 400px; height: 400px;' src='//www.google.com/maps/embed/v1/directions?";
+                texte += "origin="+stringURL(adrClient);
+                texte += "&destination="+stringURL(adrLivraison);
+                texte += "&key=AIzaSyCC1lTVsfYDrgSH7ICP56LAMdpwIJKmn3Q";
+                texte += "&mode=bicycling'>";
+                texte += "</iframe>";
 
                 var service = new google.maps.DistanceMatrixService();
                 service.getDistanceMatrix(
@@ -29,6 +79,8 @@
 
                         document.getElementById('commande_client_distance').value = distanceEnMetres;
                         document.getElementById('commande_client_fraisLivraison').value = distanceEnMetres * 0.0025;
+
+                        document.getElementById('map').innerHTML = texte;
                     });
             }
 
@@ -48,7 +100,8 @@
     <input type="button" onclick="calculerDureeDistance()" value="calculer la distance et le prix">
     {{ form(monForm) }}
 
+    <div id="map">
 
-
+    </div>
 
 {% endblock %}
