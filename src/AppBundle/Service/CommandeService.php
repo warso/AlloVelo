@@ -27,7 +27,7 @@ class CommandeService
         $this->em = $em;
     }
 
-    public function creerCommande($adresseReception, $adresseLivraison, $fraisLivraison, $user)
+    public function creerCommande($adresseReception, $adresseLivraison, $fraisLivraison, $distance, $user)
     {
         // récupérer un client en tant qu'entité
         $user = $this->em->find("AppBundle:Client", $user->getId());
@@ -37,6 +37,7 @@ class CommandeService
         $cmde->setAdresseLivraison($adresseLivraison);
         $cmde->setAdresseReception($adresseReception);
         $cmde->setFraisLivraison($fraisLivraison);
+        $cmde->setDistance($distance);
         $cmde->setClient($user);
         $cmde->setEtat("PAYEE");
         $cmde->setDateCommande(new \DateTime());
@@ -52,7 +53,7 @@ class CommandeService
         $livreur = $this->em->find("AppBundle:Livreur", $livreur->getId());
         
         // modifier la commande
-        $commande = $this->em->find("AppBundle:Commande", $cmd->getId());
+        $commande = $this->em->find("AppBundle:Commande", $cmd);
 //        $commande = new \AppBundle\Entity\Commande();
         $commande->setLivreur($livreur);
         $commande->setEtat("ATTRIBUEE");

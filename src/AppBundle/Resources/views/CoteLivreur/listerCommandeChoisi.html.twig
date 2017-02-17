@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1> Liste des Commandes du Livreur </h1>
+    <h1> Liste des commandes choisies </h1>
 
     <table>
         <tr>
@@ -25,23 +25,12 @@
             <th>Adresse de Livraison</th>
             <th>Etat</th>
         </tr>
-        {%for cmdAct in commandesLiv %}
+        {% for cmdAct in commandesCh %}
             <tr>
                 <td>{{cmdAct.client}}</td>
                 <td>{{cmdAct.dateCommande | date}}</td>
                 <td>{{cmdAct.adresseLivraison}}</td>
                 <td>{{cmdAct.etat}}</td>
-                <td> <a href="{{ path("choisirCommande", {idCommande:cmdAct.id} ) }}" >Choisir cette commande</a></td>
-
-
-
-
-
-
-
-
-
-
             </tr>
         {% endfor %}
     </table>

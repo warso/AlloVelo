@@ -52,14 +52,39 @@ class CoteLivreurController extends Controller {
     }
 
     /**
-     * Lister les commandes du livreur à choisir
-     * @Route("/indiquerProduitRecep/{idCommande}", name="indiquerProdRecep")
+     * @Route ("/listeCommandeChoisie", name = "listeCommandeChoisie")
      */
-    public function indiquerProduitRecepAction($idCommande) {
+    public function listeCommandeChoisie() {
 
-        $this->get("commande_service")->commandeReceptionnee($idCommande);
+        $qb = $this->getDoctrine()->getManager()->createQueryBuilder();
+//        $qb = new \Doctrine\ORM\QueryBuilder;
+        $qb->select("c")
+                ->from("AppBundle:Commande", "c")
+                ->where("c.livreur = :livreur")
+                ->andWhere("c.etat IN ('ATTRIBUEE', 'RECEPTIONNEE')")
+                ->orderBy("c.etat","DESC")
+                ->setParameter("livreur", $this->getUser());
 
-        return $this->redirectToRoute('listerCommande');
+
+        $query = $qb->getQuery();
+
+        $commande = $query->getResult();
+        //affiche le formulaire
+
+        return $this->render('AppBundle:CoteLivreur:listerCommandeChoisi.html.twig', array("commandesCh" => $commande));
+        
+    }
+
+    /**
+     * Livreur choisi sa commande à livrer
+     * @Route("/choisirCommande/{idCommande}", name="choisirCommande")
+     */
+    public function choisirCommandeAction($idCommande) {
+
+        $this->get("commande_service")->commandeAttribuee($idCommande, $this->getUser());
+
+
+        return $this->redirectToRoute('listeCommandeChoisie');
     }
 
 }
