@@ -33,7 +33,7 @@ class InscriptionClientController extends Controller
             $this->get("client_service")->inscrire($user);
 
 //            return $this->render("::message.html.twig", array("message" => "inscription réussie"));
-            return $this->redirectToRoute('connexionClient');
+            return $this->redirectToRoute('login');
         }
 
         // ici le formulaire n'a pas été posté ou est invalide
