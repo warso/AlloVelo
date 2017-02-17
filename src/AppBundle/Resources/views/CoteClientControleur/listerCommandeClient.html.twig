@@ -18,38 +18,40 @@
 {% block body %}
     <h1> Liste de mes commandes </h1>
 
-    <table>
-        <tr>
-            <th>Date de commande</th>
-            <th>Adresse de Réception</th>
-            <th>Adresse de Livraison</th>
-            <th>Frais de Livraison</th>
-            <th>Etat</th>
-        </tr>
-        {%for cmdAct in commandesCli %}
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-hover">
             <tr>
-                <td>{{cmdAct.dateCommande | date}}</td>
-                <td>{{cmdAct.adresseReception}}</td>
-                <td>{{cmdAct.adresseLivraison}}</td>
-                <td>{{cmdAct.fraisLivraison}}</td>
-
-                {% if (not cmdAct.dateReception is null) %}
-                    <td> réceptionnée par {{ cmdAct.livreur }} à {{cmdAct.dateReception | date}} </td>
-                    {% if ( cmdAct.dateLivraison is null) %}
-                        <td> <a href="{{ path("terminerCommande", {idCommande:cmdAct.id} ) }}" >terminer la commande</a></td>
-                    {% endif %}
-                {% endif %}
-
-                {% if (cmdAct.etat=="ATTRIBUEE") %}
-                    <td> choisie par {{ cmdAct.livreur }}  </td>
-                {% elseif (cmdAct.etat=="LIVREE") %}
-                    <td> Livrée  à  {{cmdAct.dateLivraison | date}} </td>
-                {%else%}
-                    <td>{{cmdAct.etat}}</td>
-                {% endif %}
-
+                <th>Date de commande</th>
+                <th>Adresse de Réception</th>
+                <th>Adresse de Livraison</th>
+                <th>Frais de Livraison</th>
+                <th>Etat</th>
             </tr>
-        {% endfor %}
-    </table>
+            {%for cmdAct in commandesCli %}
+                <tr>
+                    <td>{{cmdAct.dateCommande | date}}</td>
+                    <td>{{cmdAct.adresseReception}}</td>
+                    <td>{{cmdAct.adresseLivraison}}</td>
+                    <td>{{cmdAct.fraisLivraison}}</td>
 
-{% endblock %}
+                    {% if (not cmdAct.dateReception is null) %}
+                        <td> réceptionnée par {{ cmdAct.livreur }} à {{cmdAct.dateReception | date}} </td>
+                        {% if ( cmdAct.dateLivraison is null) %}
+                            <td> <a href="{{ path("terminerCommande", {idCommande:cmdAct.id} ) }}" >terminer la commande</a></td>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if (cmdAct.etat=="ATTRIBUEE") %}
+                        <td> choisie par {{ cmdAct.livreur }}  </td>
+                    {% elseif (cmdAct.etat=="LIVREE") %}
+                        <td> Livrée  à  {{cmdAct.dateLivraison | date}} </td>
+                    {%else%}
+                        <td>{{cmdAct.etat}}</td>
+                    {% endif %}
+
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% endblock %}
