@@ -5,10 +5,10 @@
 {% block javascripts %}
     <script src="{{ asset('JS/jquery-3.1.1.js') }}" type="text/javascript"></script>
     <script>
-        
-        $(function(){
-            
-            setInterval(function(){
+
+        $(function () {
+
+            setInterval(function () {
                 window.location.reload();
             }, 10000);
         });
@@ -35,9 +35,9 @@
 
                 {% if (not cmdAct.dateReception is null) %}
                     <td> réceptionnée par {{ cmdAct.livreur }} à {{cmdAct.dateReception | date}} </td>
-                    {#                {% if (not cmdAct.dateLivraison is null) %}#}
-                    <td> <a href="{{ path("terminerCommande", {idCommande:cmdAct.id} ) }}" >terminer la commande</a></td>
-{#                {% endif %}#}
+                    {% if (not cmdAct.dateLivraison is null) %}
+                        <td> <a href="{{ path("terminerCommande", {idCommande:cmdAct.id} ) }}" >terminer la commande</a></td>
+                    {% endif %}
                 {% endif %}
 
                 {% if (cmdAct.etat=="ATTRIBUEE") %}

@@ -51,13 +51,15 @@ class CoteLivreurController extends Controller {
         return $this->render('AppBundle:CoteLivreur:listerLivraisonFini.html.twig', array("commandesLiv" => $commande));
     }
 
+    /**
+     * Lister les commandes du livreur à choisir
+     * @Route("/indiquerProduitRecep/{idCommande}", name="indiquerProdRecep")
+     */
     public function indiquerProduitRecepAction($idCommande) {
 
         $this->get("commande_service")->commandeReceptionnee($idCommande);
 
         return $this->redirectToRoute('listerCommande');
     }
-    
-    
 
 }
