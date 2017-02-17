@@ -10,7 +10,7 @@
             
             setInterval(function(){
                 window.location.reload();
-            }, 500);
+            }, 10000);
         });
     </script>
 {% endblock %}
@@ -35,10 +35,11 @@
 
                 {% if (not cmdAct.dateReception is null) %}
                     <td> réceptionnée par {{ cmdAct.livreur }} à {{cmdAct.dateReception | date}} </td>
-                {% endif %}
-{#                {% if (not cmdAct.dateLivraison is null) %}#}
+                    {#                {% if (not cmdAct.dateLivraison is null) %}#}
                     <td> <a href="{{ path("terminerCommande", {idCommande:cmdAct.id} ) }}" >terminer la commande</a></td>
 {#                {% endif %}#}
+                {% endif %}
+
                 {% if (cmdAct.etat=="ATTRIBUEE") %}
                     <td> choisie par {{ cmdAct.livreur }}  </td>
                 {% elseif (cmdAct.etat=="LIVREE") %}
